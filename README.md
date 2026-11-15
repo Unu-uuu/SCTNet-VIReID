@@ -22,9 +22,9 @@ Our experiments are conducted under the following environments:
 
 ## 2. Datasets
 
-- **RegDB** [1]: The RegDB dataset can be downloaded from this [website](http://dm.dongguk.edu/link.html).
+- **RegDB** [1]: The RegDB dataset can be downloaded from this [website](https://github.com/githubXin89/RegDB-dataset).
 
-- **SYSU-MM01** [2]: The SYSU-MM01 dataset can be downloaded from this [website](http://isee.sysu.edu.cn/project/RGBIRReID.htm).
+- **SYSU-MM01** [2]: The SYSU-MM01 dataset can be downloaded from this [website](https://github.com/wuancong/SYSU-MM01).
 
   - run `python pre_process_sysu.py` to prepare the dataset, the training data will be stored in ".npy" format.
 
@@ -32,7 +32,7 @@ Our experiments are conducted under the following environments:
     python pre_process_sysu.py
     ```
 
-- **LLCM** [4]: The LLCM dataset can be downloaded by sending a signed [dataset release agreement](https://github.com/ZYK100/LLCM/blob/main/Agreement/LLCM%20DATASET%20RELEASE%20AGREEMENT.pdf) copy to zhangyk@stu.xmu.edu.cn.
+- **LLCM** [4]: The LLCM dataset can be downloaded from this [website](https://github.com/ZYK100/LLCM).
 
 
 ## 3. Training
@@ -87,14 +87,11 @@ python test.py --dataset 'llcm' --resume 'model_path'  --gpu 0
 
 We adopt **ResNet-50** [3] as backbone with ImageNet pretrained weights.
 
-| Datasets | Protocol | Backbone | Rank@1 | Rank@10 |  mAP   |  mINP  |
-| :------: | :------: | :------: | :----: | :-----: | :-----: | :----: |
-|  SYSU-MM01   |   All-search    |   ResNet-50    | 82.78% | 98.26%  | 77.61% | 87.22% |
-|  SYSU-MM01   |   Indoor-search    |   ResNet-50    | 87.22% | 98.97%  | 88.33% | 95.44% |
-|  RegDB   |   VIS-to-IR    |   ResNet-50    | 95.44% |  -  | 92.32% |  -  |
-|  RegDB   |   IR-to-VIS    |   ResNet-50    | 94.95% |  -  | 91.31% |  -  |
-|  LLCM   |   VIS-to-IR    |   ResNet-50    | 68.58% |  -  | 70.29% |  -  |
-|  LLCM   |   IR-to-VIS    |   ResNet-50    | 60.11% |  -  | 66.22% |  -  |
+| Datasets | Backbone | Rank@1 |  mAP  |
+| :------: | :------: | :----: | :-----: |
+|  SYSU-MM01   |   ResNet-50    | 82.78% | 77.61% |
+|  RegDB   |   ResNet-50    | 95.44% | 92.32% |
+|  LLCM   |   ResNet-50    | 68.58% | 70.29% |
 
 **\*The results may exhibit fluctuations due to random splitting, and further improvement can be achieved by fine-tuning the hyperparameters.**
 
