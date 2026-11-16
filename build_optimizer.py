@@ -27,12 +27,10 @@ def build_optim(net, opt, lr):
             lr_temp = lr * 0.1
             weight_decay = 1e-4
             
-            # 偏置项
             if "bias" in key:
                 lr_temp = lr_temp * 2
                 weight_decay = 0.0
             
-            # bottleneck 和 classifier 用完整学习率
             if "bottleneck" in key or "classifier" in key:
                 lr_temp = lr
             
@@ -70,18 +68,16 @@ def build_optim(net, opt, lr):
                 base_params.append(param)
         
         
-        # 构建参数组
         param_groups = [
             {'params': base_params, 'lr': 0.1 * lr},
             {'params': bottleneck_params, 'lr': lr},
             {'params': classifier_params, 'lr': lr},
         ]
         
-        # 如果有自适应参数，添加到参数组
         if len(adaptive_params) > 0:
             param_groups.append({
                 'params': adaptive_params, 
-                'lr': 0.01 * lr,  # 自适应参数用 1/100 学习率
+                'lr': 0.01 * lr,  
                 'weight_decay': 1e-5
             })
         
@@ -92,7 +88,7 @@ def build_optim(net, opt, lr):
             nesterov=True
         )
 
-        # shallow_optimizer 只优化 base_params（保持你原来的逻辑）
+
         shallow_optimizer = optim.SGD(
             [{'params': base_params, 'lr': 0.1 * lr}],
             weight_decay=5e-4, 
